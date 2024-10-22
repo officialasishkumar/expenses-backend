@@ -1,4 +1,3 @@
-// handlers/balance_handler.go
 package handlers
 
 import (

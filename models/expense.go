@@ -1,4 +1,3 @@
-// models/expense.go
 package models
 
 import (

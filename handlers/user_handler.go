@@ -1,4 +1,3 @@
-// handlers/user_handler.go
 package handlers
 
 import (
@@ -86,7 +85,7 @@ func identifyUser(identifier string) (models.User, error) {
 	defer cancel()
 
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$`)
-	phoneRegex := regexp.MustCompile(`^\+?[1-9]\d{1,14}$`) // E.164 format
+	phoneRegex := regexp.MustCompile(`^[6-9]\d{9}$`) // Indian 10-digit phone number
 
 	identifier = strings.TrimSpace(identifier)
 

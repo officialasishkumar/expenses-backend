@@ -1,4 +1,3 @@
-// db/mongodb.go
 package db
 
 import (
@@ -6,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson" // Added bson import
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -38,7 +37,6 @@ func InitMongoDB(uri string) {
 	UsersCol = db.Collection("users")
 	ExpensesCol = db.Collection("expenses")
 
-	// Create indexes
 	createIndexes()
 }
 
