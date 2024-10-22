@@ -6,14 +6,14 @@ This project is a backend service for managing users and expenses, with support 
 
 Make sure the following are installed on your system:
 
-- **Go** (Version 1.20 or later): [Installation Guide](https://golang.org/doc/install)
-- **MongoDB**: [Installation Guide](https://docs.mongodb.com/manual/installation/)
-- **jq** (JSON Processor): 
-  - **Ubuntu/Debian**: `sudo apt-get install jq`
-  - **Fedora**: `sudo dnf install jq`
-  - **macOS**: `brew install jq`
+* **Go** (Version 1.20 or later): [Installation Guide](https://golang.org/doc/install)
+* **MongoDB**: [Installation Guide](https://docs.mongodb.com/manual/installation/)
+* **jq** (JSON Processor): 
+  + **Ubuntu/Debian**: `sudo apt-get install jq`
+  + **Fedora**: `sudo dnf install jq`
+  + **macOS**: `brew install jq`
 
-Ensure the MongoDB service is running on your machine (default: `mongodb://localhost:27017`).
+Ensure the MongoDB service is running on your machine (default: `mongodb://localhost:27017` ).
 
 ## Project Setup
 
@@ -54,7 +54,7 @@ Make sure the backend server is running before running the test scripts.
 go run main.go
 ```
 
-The server should now be running on `http://localhost:8080`.
+The server should now be running on `http://localhost:8080` .
 
 ---
 
@@ -81,11 +81,11 @@ The script will send multiple API requests to the backend and print the results.
 ### 3. Verify Results
 
 The script will:
-- Create users and expenses
-- Retrieve individual and all expenses
-- Generate and download a balance sheet
+* Create users and expenses
+* Retrieve individual and all expenses
+* Generate and download a balance sheet
 
-If the balance sheet is successfully downloaded, it will be saved as `balance_sheet.csv`.
+If the balance sheet is successfully downloaded, it will be saved as `balance_sheet.csv` .
 
 ### 4. API Documentation
 
@@ -97,16 +97,16 @@ If the balance sheet is successfully downloaded, it will be saved as `balance_sh
 
 ```json
 {
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "mobile_number": "+1234567890"
+  "name": "Priya Sharma",
+  "email": "priya.sharma@example.com",
+  "mobile_number": "9123456789"
 }
 ```
 
 **Response:**
 
-- **201 Created** – Returns user details.  
-- **400 Bad Request** – If validation fails.
+* **201 Created** – Returns user details.  
+* **400 Bad Request** – If validation fails.
 
 ---
 
@@ -115,18 +115,18 @@ If the balance sheet is successfully downloaded, it will be saved as `balance_sh
 **Query Parameters:**  
 One of the following must be provided:
 
-- `identifier` (can be **email**, **mobile_number**, or **name**)
+* `identifier` (can be **email**, **mobile_number**, or **name**)
 
 **Behavior:**  
-- If `email` or `mobile_number` is provided, fetch the unique user.
-- If `name` is provided:
-  - If the name is **unique**, return the user details.
-  - If **multiple users** exist with the same name, return an **error** prompting for email or phone number.
+* If `email` or `mobile_number` is provided, fetch the unique user.
+* If `name` is provided:
+  + If the name is **unique**, return the user details.
+  + If **multiple users** exist with the same name, return an **error** prompting for email or phone number.
 
 **Response:**
 
-- **200 OK** – Returns user details.  
-- **400 Bad Request** – If input is invalid or ambiguous.
+* **200 OK** – Returns user details.  
+* **400 Bad Request** – If input is invalid or ambiguous.
 
 ---
 
@@ -138,22 +138,22 @@ One of the following must be provided:
 
 ```json
 {
-  "description": "Dinner at Restaurant",
+  "description": "Lunch at Cafe",
   "amount": 3000,
-  "created_by": "john.doe@example.com",  // Can be email, phone, or name
+  "created_by": "priya.sharma@example.com",
   "split_type": "Equal",
-  "participants": ["alice@example.com", "bob@example.com"]
+  "participants": ["rajesh.kumar@example.com", "anjali.singh@example.com"]
 }
 ```
 
 **Behavior:**  
-- Identify `created_by` and `participants` using **email**, **phone**, or **name**.  
-- Validate split details based on the `split_type`.  
+* Identify `created_by` and `participants` using **email**, **phone**, or **name**.  
+* Validate split details based on the `split_type`.  
 
 **Response:**
 
-- **201 Created** – Returns expense details.  
-- **400 Bad Request** – If validation fails.
+* **201 Created** – Returns expense details.  
+* **400 Bad Request** – If validation fails.
 
 ---
 
@@ -161,23 +161,23 @@ One of the following must be provided:
 
 **Query Parameter:**
 
-- `identifier` (can be **email**, **phone**, or **name**)
+* `identifier` (can be **email**, **phone**, or **name**)
 
 **Response:**
 
-- **200 OK** – Returns a list of expenses.  
-- **400 Bad Request** – If the user is ambiguous or not found.
+* **200 OK** – Returns a list of expenses.  
+* **400 Bad Request** – If the user is ambiguous or not found.
 
 ---
 
 ### **GET /expenses** – Retrieve Overall Expenses
 
 **Optional Query Parameters:**  
-- Pagination parameters like `page` and `limit`.
+* Pagination parameters like `page` and `limit`.
 
 **Response:**
 
-- **200 OK** – Returns a list of all expenses.
+* **200 OK** – Returns a list of all expenses.
 
 ---
 
@@ -187,13 +187,13 @@ One of the following must be provided:
 
 **Response:**
 
-- **200 OK** – Provides a downloadable **CSV file**.  
-- **400 Bad Request** – If generation fails.
+* **200 OK** – Provides a downloadable **CSV file**.  
+* **400 Bad Request** – If generation fails.
 
 ---
 
 ## Troubleshooting
 
-- **MongoDB Connection Error**: Ensure that MongoDB is running and accessible at `mongodb://localhost:27017`.
-- **jq Not Found**: Make sure `jq` is installed. See the [installation guide](https://stedolan.github.io/jq/download/) for more details.
-- **Server Not Starting**: Ensure all dependencies are installed and there are no syntax errors in your code.
+* **MongoDB Connection Error**: Ensure that MongoDB is running and accessible at `mongodb://localhost:27017`.
+* **jq Not Found**: Make sure `jq` is installed. See the [installation guide](https://stedolan.github.io/jq/download/) for more details.
+* **Server Not Starting**: Ensure all dependencies are installed and there are no syntax errors in your code.
