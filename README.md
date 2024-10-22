@@ -87,6 +87,109 @@ The script will:
 
 If the balance sheet is successfully downloaded, it will be saved as `balance_sheet.csv`.
 
+### 4. API Documentation
+
+## User Endpoints
+
+### **POST /users** – Create a New User
+
+**Request Body:**
+
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "mobile_number": "+1234567890"
+}
+```
+
+**Response:**
+
+- **201 Created** – Returns user details.  
+- **400 Bad Request** – If validation fails.
+
+---
+
+### **GET /users** – Retrieve User Details
+
+**Query Parameters:**  
+One of the following must be provided:
+
+- `identifier` (can be **email**, **mobile_number**, or **name**)
+
+**Behavior:**  
+- If `email` or `mobile_number` is provided, fetch the unique user.
+- If `name` is provided:
+  - If the name is **unique**, return the user details.
+  - If **multiple users** exist with the same name, return an **error** prompting for email or phone number.
+
+**Response:**
+
+- **200 OK** – Returns user details.  
+- **400 Bad Request** – If input is invalid or ambiguous.
+
+---
+
+## Expense Endpoints
+
+### **POST /expenses** – Add a New Expense
+
+**Request Body:**
+
+```json
+{
+  "description": "Dinner at Restaurant",
+  "amount": 3000,
+  "created_by": "john.doe@example.com",  // Can be email, phone, or name
+  "split_type": "Equal",
+  "participants": ["alice@example.com", "bob@example.com"]
+}
+```
+
+**Behavior:**  
+- Identify `created_by` and `participants` using **email**, **phone**, or **name**.  
+- Validate split details based on the `split_type`.  
+
+**Response:**
+
+- **201 Created** – Returns expense details.  
+- **400 Bad Request** – If validation fails.
+
+---
+
+### **GET /expenses/user** – Retrieve All Expenses for a User
+
+**Query Parameter:**
+
+- `identifier` (can be **email**, **phone**, or **name**)
+
+**Response:**
+
+- **200 OK** – Returns a list of expenses.  
+- **400 Bad Request** – If the user is ambiguous or not found.
+
+---
+
+### **GET /expenses** – Retrieve Overall Expenses
+
+**Optional Query Parameters:**  
+- Pagination parameters like `page` and `limit`.
+
+**Response:**
+
+- **200 OK** – Returns a list of all expenses.
+
+---
+
+## Balance Sheet Endpoint
+
+### **GET /balancesheet/download** – Download Balance Sheet
+
+**Response:**
+
+- **200 OK** – Provides a downloadable **CSV file**.  
+- **400 Bad Request** – If generation fails.
+
 ---
 
 ## Troubleshooting
