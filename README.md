@@ -2,6 +2,8 @@
 
 This project is a backend service for managing users and expenses, with support for splitting expenses by equal, exact, or percentage methods. It provides APIs for user and expense management, as well as generating downloadable balance sheets.
 
+video walkthrough: https://youtu.be/KIQ-vyIsIDc
+
 ## Prerequisites
 
 Make sure the following are installed on your system:
